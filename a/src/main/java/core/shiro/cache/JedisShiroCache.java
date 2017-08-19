@@ -35,11 +35,11 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
 	/**
 	 * 为了不和其他的缓存混淆，采用追加前缀方式以作区分
 	 */
-    private static final String REDIS_SHIRO_CACHE = "shiro-demo-cache:";
+    private static final String REDIS_SHIRO_CACHE = "shiro-realm:";
     /**
      * Redis 分片(分区)，也可以在配置文件中配置
      */
-    private static final int DB_INDEX = 1;
+    private static final int DB_INDEX = 0;
 
     private JedisManager jedisManager;
     
@@ -66,7 +66,7 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
     }
 
     public V get(K key) throws CacheException {
-        byte[] byteKey = SerializeUtil.serialize(buildCacheKey(key));
+        byte[] byteKey = buildCacheKey(key).getBytes();//SerializeUtil.serialize(buildCacheKey(key));
         byte[] byteValue = new byte[0];
         try {
             byteValue = jedisManager.getValueByKey(DB_INDEX, byteKey);
@@ -78,8 +78,10 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
     public V put(K key, V value) throws CacheException {
         V previos = get(key);
         try {
-            jedisManager.saveValueByKey(DB_INDEX, SerializeUtil.serialize(buildCacheKey(key)),
+
+        	jedisManager.saveValueByKey(DB_INDEX, buildCacheKey(key).getBytes(),
                     SerializeUtil.serialize(value), -1);
+            
         } catch (Exception e) {
         }
         return previos;
@@ -88,7 +90,7 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
     public V remove(K key) throws CacheException {
         V previos = get(key);
         try {
-            jedisManager.deleteByKey(DB_INDEX, SerializeUtil.serialize(buildCacheKey(key)));
+            jedisManager.deleteByKey(DB_INDEX, buildCacheKey(key).getBytes());
         } catch (Exception e) {
         }
         return previos;
