@@ -109,25 +109,6 @@ public class JedisManager {
             returnResource(jedis, isBroken);
         }
     }
-    
-//    public void saveValueByKey(int dbIndex, String key, String value, int expireTime)
-//            throws Exception {
-//        Jedis jedis = null;
-//        boolean isBroken = false;
-//        try {
-//            jedis = getJedis();
-//            jedis.select(dbIndex);
-//            jedis.set(key, value);
-//            if (expireTime > 0)
-//                jedis.expire(key, expireTime);
-//        } catch (Exception e) {
-//            isBroken = true;
-//            throw e;
-//        } finally {
-//            returnResource(jedis, isBroken);
-//        }
-//    }    
-    
 
     public JedisPool getJedisPool() {
         return jedisPool;

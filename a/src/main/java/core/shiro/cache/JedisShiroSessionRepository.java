@@ -8,7 +8,7 @@ import org.apache.shiro.session.Session;
 import core.shiro.session.CustomSessionManager;
 import core.shiro.session.SessionStatus;
 import core.utilities.SerializeUtil;
-
+ 
 /**
  * Session 管理
  * @author sojson.com
@@ -28,7 +28,7 @@ public class JedisShiroSessionRepository  {
         if (session == null || session.getId() == null)
             throw new NullPointerException("session is empty");
         try {
-            byte[] key = buildRedisSessionKey(session.getId()).getBytes();//SerializeUtil.serialize(buildRedisSessionKey(session.getId()));
+            byte[] key = SerializeUtil.serialize(buildRedisSessionKey(session.getId()));
             
             
             //不存在才添加。
