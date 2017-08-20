@@ -89,7 +89,7 @@
 
 	
 	<!-- Session Manager -->
-	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+	<bean id="sessionManager" class="core.shiro.session.XWebSessionManager">
 		<property name="sessionIdUrlRewritingEnabled" value="false"/>
 		<!-- 相隔多久检查一次session的有效性   -->
 	 	<property name="sessionValidationInterval" value="1800000"/>  

@@ -43,8 +43,6 @@ public class CustomSessionManager {
 	 * session status 
 	 */
 	public static final String SESSION_STATUS ="sojson-online-status";
-	@Autowired
-	JedisShiroSessionRepository shiroSessionRepository;
 	
 	@Autowired
 	CustomShiroSessionDAO customShiroSessionDAO;
@@ -107,7 +105,7 @@ public class CustomSessionManager {
 	 * @return
 	 */
 	public UserOnlineBo getSession(String sessionId) {
-		Session session = shiroSessionRepository.getSession(sessionId);
+		Session session = customShiroSessionDAO.getShiroSessionRepository().getSession(sessionId);
 		UserOnlineBo bo = getSessionBo(session);
 		return bo;
 	}
@@ -169,7 +167,7 @@ public class CustomSessionManager {
 				sessionIdArray = sessionIds.split(",");
 			}
 			for (String id : sessionIdArray) {
-				Session session = shiroSessionRepository.getSession(id);
+				Session session = customShiroSessionDAO.getShiroSessionRepository().getSession(id);
 				SessionStatus sessionStatus = new SessionStatus();
 				sessionStatus.setOnlineStatus(status);
 				session.setAttribute(SESSION_STATUS, sessionStatus);
@@ -197,7 +195,7 @@ public class CustomSessionManager {
 			//匹配用户ID
 			if(userId.equals(id)){
 				//获取用户Session
-				Session session = shiroSessionRepository.getSession(bo.getSessionId());
+				Session session = customShiroSessionDAO.getShiroSessionRepository().getSession(bo.getSessionId());
 				//标记用户Session
 				SessionStatus sessionStatus = (SessionStatus) session.getAttribute(SESSION_STATUS);
 				//是否踢出 true:有效，false：踢出。
@@ -207,10 +205,7 @@ public class CustomSessionManager {
 			}
 		}
 	}
-	public void setShiroSessionRepository(
-			JedisShiroSessionRepository shiroSessionRepository) {
-		this.shiroSessionRepository = shiroSessionRepository;
-	}
+	 
 
 	public void setCustomShiroSessionDAO(CustomShiroSessionDAO customShiroSessionDAO) {
 		this.customShiroSessionDAO = customShiroSessionDAO;
