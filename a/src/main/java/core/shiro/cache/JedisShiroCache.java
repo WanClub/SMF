@@ -39,7 +39,7 @@ public class JedisShiroCache<K, V> implements Cache<K, V> {
     /**
      * Redis 分片(分区)，也可以在配置文件中配置
      */
-    private static final int DB_INDEX = 0;
+    private static final int DB_INDEX = 1;
 
     private JedisManager jedisManager;
     
