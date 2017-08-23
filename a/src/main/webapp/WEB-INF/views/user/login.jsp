@@ -7,14 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
 
-request.getSession(true).setAttribute("name", "lxj");
-
-%>
-
-
-<%=request.getSession().getAttribute("name") %>
+ 
 
 <form action="submitLogin.shtml" method="post">
 
