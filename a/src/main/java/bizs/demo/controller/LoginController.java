@@ -80,5 +80,20 @@ public class LoginController  {
 		return resultMap;
 	}		
 	
-	
+	/**
+	 * 退出
+	 * @return
+	 */
+	@RequestMapping(value="logout",method =RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> logout(){
+		try {
+			TokenManager.logout();
+			resultMap.put("status", 200);
+		} catch (Exception e) {
+			resultMap.put("status", 500);
+			e.printStackTrace();
+		}
+		return resultMap;
+	}	
 }

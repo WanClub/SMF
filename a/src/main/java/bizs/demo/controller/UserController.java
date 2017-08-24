@@ -30,7 +30,7 @@ import core.utilities.StringUtils;
 @Controller
 @Scope(value="prototype")
 @RequestMapping("user")
-public class UserCoreController  {
+public class UserController  {
 	
 	
 	protected Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
