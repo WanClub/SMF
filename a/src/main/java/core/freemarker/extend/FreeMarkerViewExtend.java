@@ -30,7 +30,7 @@ public class FreeMarkerViewExtend extends FreeMarkerView {
 		} catch (Exception e) {
 		}
 		model.put("contextPath", request.getContextPath());
-		model.putAll(FreeMarkerViewExtend.initMap);
+		//model.putAll(FreeMarkerViewExtend.initMap);
 		UUser token = TokenManager.getToken();
 		model.put("token", token);		//登录的token
 		model.put("_time", new Date().getTime());
@@ -42,41 +42,5 @@ public class FreeMarkerViewExtend extends FreeMarkerView {
 		
 	}
 	
-	private static Configuration cfg = null;
-	static Map<String,Object> initMap;
-	
-	static {
-		initMap = new LinkedHashMap<String,Object>() ;
-		/**项目静态地址*/
-//		String jsPath = WYFConfig.get("js_path");
-//		String csspath = WYFConfig.get("css_path");
-//		String imgpath = WYFConfig.get("img_path");
-//		String path    = WYFConfig.get("path");
-//		initMap.put("jspath", jsPath);
-//		initMap.put("csspath", csspath);
-//		initMap.put("imgpath", imgpath);
-//		initMap.put("path", path);
-		/**Freemarker Config*/
-		//1、创建Cfg
-		cfg = new Configuration();
-		//2、设置编码
-		cfg.setLocale(Locale.getDefault()) ;
-		cfg.setEncoding(Locale.getDefault(),"UTF-8") ;
-		
-		/**添加自定义标签*/
-		//APITemplateModel api = SpringContextUtil.getBean("api",APITemplateModel.class);
-		//cfg.setSharedVariable("api", api);
-		
-		FreeMarkerConfigurer ext = SpringContextUtil.getBean("freemarkerConfig",FreeMarkerConfigurer.class);
-		
-		Configuration vcfg = ext.getConfiguration();
-		Set<String> keys = vcfg.getSharedVariableNames();
-		for (String key : keys) {
-			TemplateModel value = vcfg.getSharedVariable(key);
-			cfg.setSharedVariable(key, value); 
-		}
-		cfg.setSharedVariable("shiro",new ShiroTags()); 
-		cfg.setNumberFormat("#");//防止页面输出数字,变成2,000
-		 
-	}
+ 
 }

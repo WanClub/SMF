@@ -111,7 +111,7 @@
 
 	<!-- 配置freeMarker 拓展-->
 	<bean id="freemarkerConfig"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		class="core.freemarker.extend.FreeMarkerConfigExtend">
 		<property name="templateLoaderPath">
 			<value>/WEB-INF/ftl/</value>
 		</property>
