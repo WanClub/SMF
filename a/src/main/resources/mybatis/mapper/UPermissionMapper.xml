@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bizs.demo.dao.UPermissionMapper" >
+
+  <!-- 根据用ID查询permission -->
+  <select id="findPermissionByUserId" resultType="java.lang.String">
+  		select p.url from u_permission p , u_role_permission rp, u_user_role ur 
+		where uid =#{id,jdbcType=BIGINT} and p.id = rp.pid and rp.rid = ur.rid
+  </select>
+  
+  
+ 
+</mapper>
