@@ -30,7 +30,7 @@ import insight.portal.model.UUser;
 @Controller
 @Scope(value="prototype")
 @RequestMapping("user")
-public class UserController  {
+public class UserCoreController  {
 	
 	
 	protected Map<String, Object> resultMap = new LinkedHashMap<String, Object>();

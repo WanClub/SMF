@@ -29,8 +29,8 @@ import insight.portal.model.UUser;
 
 @Controller
 @Scope(value="prototype")
-@RequestMapping("anonymous")
-public class LoginController  {
+@RequestMapping("portal")
+public class PortalController  {
 	
 	
 	protected Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
@@ -43,7 +43,7 @@ public class LoginController  {
 	@RequestMapping(value="login",method=RequestMethod.GET)
 	public ModelAndView login(){
 		
-		return new ModelAndView("user/login");
+		return new ModelAndView("portal/login");
 	} 
 		
 	
@@ -80,5 +80,20 @@ public class LoginController  {
 		return resultMap;
 	}		
 	
-	
+	/**
+	 * 退出
+	 * @return
+	 */
+	@RequestMapping(value="logout",method =RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> logout(){
+		try {
+			TokenManager.logout();
+			resultMap.put("status", 200);
+		} catch (Exception e) {
+			resultMap.put("status", 500);
+			e.printStackTrace();
+		}
+		return resultMap;
+	}	
 }

@@ -16,7 +16,7 @@
 
 
 	<!-- 自动扫描(自动注入) -->
-	<context:component-scan base-package="bizs.*.controller;bizs.*.*.controller"/>
+	<context:component-scan base-package="insight.*.controller"/>
 
  	<mvc:annotation-driven  /><!-- cache-period="315360000" -->
 	<mvc:resources mapping="/images/**" location="/images/" />
@@ -26,10 +26,9 @@
 	
 	
 	<!-- 自动扫描 标签
-	<context:component-scan base-package="com.sojson.*.*.tag;com.sojson.*.tag" />
 	<bean name="api" class="com.sojson.core.tags.APITemplateModel"></bean>
 	 -->
-	<bean name="springContextUtil" class="core.utilities.SpringContextUtil" scope="singleton"></bean>
+	<bean name="springContextUtil" class="insight.core.utilities.SpringContextUtil" scope="singleton"></bean>
 	 
 	<!-- 这个一定得有，注意了，如果其他配置也有需要这个，已经配置了，那不必了 -->
 	<mvc:annotation-driven  />
@@ -84,21 +83,7 @@
 		</property>
 		<property name="order" value="1" />
 	</bean>
-
-
-	<!-- 视图解析器 -->
-	<!-- 配置freeMarker视图解析器 -->
-	<bean id="viewResolverFtl"
-		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="viewClass" value="core.freemarker.extend.FreeMarkerViewExtend" />
-		<!-- 把Freemarker 扩展一下，把相关属性加入进去。。。 -->
-		<property name="contentType" value="text/html; charset=utf-8" />
-		<property name="cache" value="true" />
-		<property name="suffix" value=".ftl" />
-		<property name="order" value="0" />
-	</bean>
-
-
+	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="2"></property>
@@ -108,12 +93,23 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 
+	<!-- 视图解析器 -->
+	<!-- 配置freeMarker视图解析器 -->
+	<bean id="viewResolverFtl"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass" value="insight.core.freemarker.extend.FreeMarkerViewExtend" />
+		<!-- 把Freemarker 扩展一下，把相关属性加入进去。。。 -->
+		<property name="contentType" value="text/html; charset=utf-8" />
+		<property name="cache" value="true" />
+		<property name="suffix" value=".ftl" />
+		<property name="order" value="0" />
+	</bean>
 
 	<!-- 配置freeMarker 拓展-->
 	<bean id="freemarkerConfig"
-		class="core.freemarker.extend.FreeMarkerConfigExtend">
+		class="insight.core.freemarker.extend.FreeMarkerConfigExtend">
 		<property name="templateLoaderPath">
-			<value>/WEB-INF/ftl/</value>
+			<value>/WEB-INF/</value>
 		</property>
 		<property name="freemarkerVariables">
 			<map>

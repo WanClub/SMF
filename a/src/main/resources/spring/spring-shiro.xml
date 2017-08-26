@@ -14,15 +14,15 @@
 	
 	
     <!-- redis 的缓存 -->
-	<bean id="jedisManager" class="core.shiro.cache.JedisManager">
+	<bean id="jedisManager" class="insight.core.shiro.cache.JedisManager">
 	    <property name="jedisPool" ref="jedisPool"/>
 	</bean>
    	<!-- session 创建、删除、查询 -->
-	<bean id="jedisShiroSessionRepository" class="core.shiro.cache.JedisShiroSessionRepository" >
+	<bean id="jedisShiroSessionRepository" class="insight.core.shiro.cache.JedisShiroSessionRepository" >
 		 <property name="jedisManager" ref="jedisManager"/>
 	</bean>
 	<!-- 用户缓存 -->
-	<bean id="customShiroCacheManager" class="core.shiro.cache.CustomShiroCacheManager">
+	<bean id="customShiroCacheManager" class="insight.core.shiro.cache.CustomShiroCacheManager">
 	    <property name="jedisManager" ref="jedisManager"/>
 	</bean>
     
@@ -33,12 +33,12 @@
 	<!-- 会话Session ID生成器 -->
 	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
    
-	<bean id="customShiroSessionDAO" class="core.shiro.session.CustomShiroSessionDAO">
+	<bean id="customShiroSessionDAO" class="insight.core.shiro.session.CustomShiroSessionDAO">
 	    <property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>
 	    <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
 	</bean>
 	<!-- 手动操作Session，管理Session -->
-	<bean id="customSessionManager" class="core.shiro.session.CustomSessionManager">
+	<bean id="customSessionManager" class="insight.core.shiro.session.CustomSessionManager">
 		 <property name="customShiroSessionDAO" ref="customShiroSessionDAO"/>
 	</bean>
  
@@ -49,7 +49,7 @@
 	
 	
 	<!-- 授权 认证 -->
-	<bean id="sampleRealm" class="core.shiro.realm.SampleRealm" >
+	<bean id="sampleRealm" class="insight.core.shiro.realm.SampleRealm" >
 	
 		<property name="cachingEnabled" value="true"/>  
         <property name="authenticationCachingEnabled" value="true"/>  
@@ -88,7 +88,7 @@
 
 	
 	<!-- Session Manager -->
-	<bean id="sessionManager" class="core.shiro.session.XWebSessionManager">
+	<bean id="sessionManager" class="insight.core.shiro.session.XWebSessionManager">
 		<property name="sessionIdUrlRewritingEnabled" value="false"/>
 		<!-- 相隔多久检查一次session的有效性   -->
 	 	<property name="sessionValidationInterval" value="${session.validate.timespan}" />  
@@ -113,7 +113,7 @@
 	
 	
 	<!-- custom shiro session listener -->
-	<bean id="customSessionListener" class="core.shiro.listenter.CustomSessionListener">
+	<bean id="customSessionListener" class="insight.core.shiro.listenter.CustomSessionListener">
 	    <property name="shiroSessionRepository" ref="jedisShiroSessionRepository"/>
 	</bean>	
 
@@ -144,16 +144,16 @@
 	
 	
 	<!-- 认证数据库存储-->
-    <bean id="shiroManager" class="core.shiro.ShiroManager"/>
-    <bean id="login" class="core.shiro.filter.LoginFilter"/>
-    <bean id="role" class="core.shiro.filter.RoleFilter"/>
-    <bean id="permission" class="core.shiro.filter.PermissionFilter"/>
-    <bean id="simple" class="core.shiro.filter.SimpleAuthFilter"/>
+    <bean id="shiroManager" class="insight.core.shiro.ShiroManager"/>
+    <bean id="login" class="insight.core.shiro.filter.LoginFilter"/>
+    <bean id="role" class="insight.core.shiro.filter.RoleFilter"/>
+    <bean id="permission" class="insight.core.shiro.filter.PermissionFilter"/>
+    <bean id="simple" class="insight.core.shiro.filter.SimpleAuthFilter"/>
 	
 	
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/anonymous/login.shtml" />
+		<property name="loginUrl" value="/portal/login.shtml" />
 		<!--	TODO 待提取	-->
 		<property name="successUrl" value="/" />
 		<property name="unauthorizedUrl" value="/?login" />

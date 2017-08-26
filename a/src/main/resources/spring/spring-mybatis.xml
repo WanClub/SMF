@@ -71,7 +71,7 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean> -->	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="bizs.demo.dao" />
+		<property name="basePackage" value="insight.portal.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
