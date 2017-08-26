@@ -1,4 +1,4 @@
-package bizs.demo.bo;
+package insight.portal.bo;
 
 import java.io.Serializable;
 /**

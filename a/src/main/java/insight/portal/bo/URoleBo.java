@@ -1,9 +1,9 @@
-package bizs.demo.bo;
+package insight.portal.bo;
 
 import java.io.Serializable;
 
-import bizs.demo.model.URole;
-import core.utilities.StringUtils;
+import insight.core.utilities.StringUtils;
+import insight.portal.model.URole;
 
 
 public class URoleBo extends URole implements Serializable{

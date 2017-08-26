@@ -1,8 +1,8 @@
-package bizs.demo.bo;
+package insight.portal.bo;
 
 import java.io.Serializable;
 
-import bizs.demo.model.UUser;
+import insight.portal.model.UUser;
 
 /**
  * 用户角色分配 查询列表BO

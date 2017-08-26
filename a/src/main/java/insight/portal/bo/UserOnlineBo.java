@@ -1,9 +1,9 @@
-package bizs.demo.bo;
+package insight.portal.bo;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import bizs.demo.model.UUser;
+import insight.portal.model.UUser;
 
 /**
  * Session  + User Bo
