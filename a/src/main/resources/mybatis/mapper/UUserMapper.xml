@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="portal.UUserMapper" >
-  <resultMap id="BaseResultMap" type="bizs.demo.model.UUser" >
+<mapper namespace="insight.portal.dao.UUserMapper" >
+
+  <resultMap id="BaseResultMap" type="insight.portal.model.UUser" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="nickname" property="nickname" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
@@ -40,7 +41,7 @@
   </select>
   
   
-  <update id="updateByPrimaryKeySelective" parameterType="bizs.demo.model.UUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="insight.portal.model.UUser" >
     update u_user
     <set >
       <if test="nickname != null" >

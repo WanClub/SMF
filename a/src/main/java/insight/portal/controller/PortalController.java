@@ -43,9 +43,29 @@ public class PortalController  {
 	@RequestMapping(value="login",method=RequestMethod.GET)
 	public ModelAndView login(){
 		
-		return new ModelAndView("portal/login");
+		
+		UUser token = TokenManager.getToken();
+		
+		if(null != token ){ 
+			return new ModelAndView("portal/frame");
+        } else {
+        	
+        	return new ModelAndView("portal/login");
+        }
+		
+		
 	} 
 		
+	
+	/**
+	 * 个人资料
+	 * @return
+	 */
+	@RequestMapping(value="index",method=RequestMethod.GET)
+	public ModelAndView index(){
+		
+		return new ModelAndView("portal/frame");
+	} 
 	
 	
 	
@@ -62,7 +82,7 @@ public class PortalController  {
 			String url = (String) request.getAttribute(WebUtils.FORWARD_REQUEST_URI_ATTRIBUTE);
 			//如果登录之前没有地址，那么就跳转到首页。
 			if(StringUtils.isBlank(url)){
-				url = "/user/index.shtml";
+				url = "/portal/frame.shtml";
 			}
 			//跳转地址
 			resultMap.put("back_url", url);

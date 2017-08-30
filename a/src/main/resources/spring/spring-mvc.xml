@@ -109,7 +109,7 @@
 	<bean id="freemarkerConfig"
 		class="insight.core.freemarker.extend.FreeMarkerConfigExtend">
 		<property name="templateLoaderPath">
-			<value>/WEB-INF/</value>
+			<value>/fview/</value>
 		</property>
 		<property name="freemarkerVariables">
 			<map>
@@ -134,11 +134,7 @@
 				<prop key="number_format">#</prop>
 				<prop key="whitespace_stripping">true</prop>
 				<prop key="auto_import">
-					/common/top.ftl 	as _top,
-					/common/left.ftl 	as _left,
-					/common/html.ftl 	as _html,
-					/common/bottom.ftl 	as _footer,
-					/common/menu.ftl 	as _menu
+					/portal/comp_portal.ftl as _portal
 				</prop>
 			</props>
 		</property>

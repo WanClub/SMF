@@ -27,9 +27,6 @@ import insight.portal.model.UUser;
  
  
 
-@Controller
-@Scope(value="prototype")
-@RequestMapping("anonymous")
 public class LoginController  {
 	
 	
