@@ -20,12 +20,12 @@
     	 
 
     
-		<form id="_form" action="/portal/submitLogin" method="post">
+		<form id="_form" action="/portal/submitLogin.shtml" method="post">
 		 
-			<input type="text" name="account" class="username" placeholder="Account">
-		  <input type="text" name="password" class="password" placeholder="Password">
-			
-			<button type="button" id="login">登录</button>
+			<input type="text" name="email" placeholder="Account">
+		  <input type="text" name="pswd" placeholder="Password">
+			<input type="hidden" name="rememberMe" value='false'>
+			<button type="submit" id="login">登录</button>
 		     
 		</form>   
     
