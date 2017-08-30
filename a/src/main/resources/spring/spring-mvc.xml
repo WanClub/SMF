@@ -134,7 +134,7 @@
 				<prop key="number_format">#</prop>
 				<prop key="whitespace_stripping">true</prop>
 				<prop key="auto_import">
-					/portal/comp_portal.ftl as _portal
+					/share/portal_.ftl as _portal
 				</prop>
 			</props>
 		</property>
